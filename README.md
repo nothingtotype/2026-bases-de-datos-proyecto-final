@@ -204,46 +204,6 @@ sistema-inventario/
     └── app.js                  # Toda la lógica fetch del frontend
 ```
 
----
-
-## Esquema de la Base de Datos
-
-### Diagrama de relaciones
-
-```
-categorias          proveedores
-    │id (PK)            │id (PK)
-    │nombre             │nombre
-                        │correo
-         └──────┬───────┘
-                │
-            productos
-                │id (PK)
-                │nombre
-                │descripcion
-                │precio
-                │categoria_id (FK → categorias)
-                │proveedor_id (FK → proveedores)
-                │
-                ▼
-        movimientos_stock
-                id (PK)
-                producto_id (FK → productos)
-                cantidad
-                tipo (ENTRADA | SALIDA)
-                fecha
-                notas
-
--- Tabla generada automáticamente por triggers --
-        historial
-                id (PK)
-                tabla
-                operacion (INSERT | UPDATE | DELETE)
-                registro_id
-                descripcion
-                fecha
-```
-
 ### Normalización
 
 La base de datos cumple con la **Tercera Forma Normal (3NF)**:
@@ -390,28 +350,36 @@ SELECT tipo, COUNT(*) AS total FROM movimientos_stock GROUP BY tipo;
 ## Capturas de Pantalla
 
 ### Página Principal
-<!-- Pegar captura de index.html -->
+
+<img width="1015" height="422" alt="image" src="https://github.com/user-attachments/assets/7a16ec64-665a-4672-813e-5cc404004210" />
 
 ### Módulo de Categorías
-<!-- Pegar captura de categorias.html -->
+
+<img width="1212" height="817" alt="image" src="https://github.com/user-attachments/assets/9dcbfde9-839b-4f8d-9aae-86765cc47f68" />
 
 ### Módulo de Proveedores
-<!-- Pegar captura de proveedores.html -->
+
+<img width="1071" height="725" alt="image" src="https://github.com/user-attachments/assets/477e0edc-d505-411e-9a30-7278a262117d" />
 
 ### Módulo de Productos
-<!-- Pegar captura de productos.html -->
+
+<img width="1214" height="831" alt="image" src="https://github.com/user-attachments/assets/5b46c61f-66c3-4673-8be5-6f1d76bb12ec" />
 
 ### Módulo de Movimientos de Stock
-<!-- Pegar captura de movimientos.html -->
+
+<img width="1150" height="729" alt="image" src="https://github.com/user-attachments/assets/e144bd59-e528-442e-b825-646bf6a0a6f0" />
 
 ### Historial de Cambios
-<!-- Pegar captura de historial.html -->
+
+<img width="1152" height="545" alt="image" src="https://github.com/user-attachments/assets/3f15649f-fb10-4510-9e9d-9d2e05f32123" />
 
 ### Documentación Swagger
-<!-- Pegar captura de localhost:8000/docs -->
+
+<img width="1502" height="970" alt="image" src="https://github.com/user-attachments/assets/690fa2ac-5d4f-4ee2-8295-66ba29e95f72" />
 
 ### pgAdmin — Diagrama de Tablas
-<!-- Pegar captura del ERD en pgAdmin -->
+
+<img width="889" height="656" alt="image" src="https://github.com/user-attachments/assets/43df104a-89de-4538-b7a0-9b8faaed09cb" />
 
 ---
 
@@ -419,8 +387,7 @@ SELECT tipo, COUNT(*) AS total FROM movimientos_stock GROUP BY tipo;
 
 | Nombre | Rol |
 |---|---|
-| [Tu Nombre] | Desarrollo Full-Stack |
-| [Nombre Compañero] | Desarrollo Full-Stack |
+| Ceim Nandayapa Vazquez | Desarrollo Full-Stack |
 
 Proyecto desarrollado para la materia de **Bases de Datos**  
-[Nombre de la Universidad] — [Semestre] [Año]
+Universidad de Guadalajara — Ingenieria en Computacion
