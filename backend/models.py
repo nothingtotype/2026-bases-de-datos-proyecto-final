@@ -48,3 +48,13 @@ class MovimientoStock(Base):
     notas       = Column(Text)
 
     producto = relationship("Producto")
+
+class Historial(Base):
+    __tablename__ = "historial"
+
+    id          = Column(Integer, primary_key=True, index=True)
+    tabla       = Column(String(50),  nullable=False)
+    operacion   = Column(String(10),  nullable=False)
+    registro_id = Column(Integer)
+    descripcion = Column(Text)
+    fecha       = Column(TIMESTAMP, server_default=func.now())

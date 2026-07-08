@@ -73,3 +73,16 @@ class MovimientoOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+# --- Historial ---
+
+class HistorialOut(BaseModel):
+    id:          int
+    tabla:       str
+    operacion:   str
+    registro_id: Optional[int]
+    descripcion: Optional[str]
+    fecha:       datetime
+
+    class Config:
+        from_attributes = True

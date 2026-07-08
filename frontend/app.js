@@ -265,3 +265,47 @@ async function eliminarMovimiento(id) {
     await fetchJSON(`${API}/movimientos/${id}`, { method: "DELETE" });
     cargarMovimientos();
 }
+
+// ───────────────────────────────
+// HISTORIAL
+// ───────────────────────────────
+
+// Maps table names and operations to readable Spanish labels
+const TABLA_LABELS = {
+    categorias:       "Categoría",
+    proveedores:      "Proveedor",
+    productos:        "Producto",
+    movimientos_stock: "Movimiento de Stock"
+};
+
+const OPERACION_LABELS = {
+    INSERT: "➕ Creado",
+    UPDATE: "✏️ Editado",
+    DELETE: "🗑️ Eliminado"
+};
+
+async function cargarHistorial() {
+    const historial = await fetchJSON(`${API}/historial`);
+    if (!historial) return;
+
+    const tbody = document.querySelector("#tabla-historial tbody");
+    tbody.innerHTML = "";
+
+    for (const h of historial) {
+        const row = document.createElement("tr");
+
+        // Color code rows by operation type
+        const colores = { INSERT: "#e6f9e6", UPDATE: "#fff8e1", DELETE: "#fde8e8" };
+        row.style.backgroundColor = colores[h.operacion] ?? "";
+
+        row.innerHTML = `
+            <td>${h.id}</td>
+            <td>${TABLA_LABELS[h.tabla] ?? h.tabla}</td>
+            <td>${OPERACION_LABELS[h.operacion] ?? h.operacion}</td>
+            <td>${h.registro_id ?? "-"}</td>
+            <td>${h.descripcion ?? "-"}</td>
+            <td>${new Date(h.fecha).toLocaleString("es-MX")}</td>
+        `;
+        tbody.appendChild(row);
+    }
+}

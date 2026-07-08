@@ -2,12 +2,13 @@ from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from database import get_db
-from models import Categoria, Proveedor, Producto, MovimientoStock
+from models import Categoria, Proveedor, Producto, MovimientoStock, Historial
 from schemas import (
     CategoriaCreate, CategoriaOut,
     ProveedorCreate, ProveedorOut,
     ProductoCreate, ProductoOut,
-    MovimientoCreate, MovimientoOut
+    MovimientoCreate, MovimientoOut,
+    HistorialOut
 )
 
 app = FastAPI()
@@ -163,3 +164,11 @@ def delete_movimiento(id: int, db: Session = Depends(get_db)):
     db.delete(movimiento)
     db.commit()
     return { "mensaje": "Movimiento eliminado" }
+
+# ───────────────────────────────
+# HISTORIAL
+# ───────────────────────────────
+
+@app.get("/historial", response_model=list[HistorialOut])
+def get_historial(db: Session = Depends(get_db)):
+    return db.query(Historial).order_by(Historial.fecha.desc()).all()
