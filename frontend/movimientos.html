@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Movimientos de Stock</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background: #f0f0f0; }
+        input, select { padding: 6px; margin-right: 8px; margin-bottom: 8px; }
+        button { padding: 6px 12px; cursor: pointer; }
+        a { display: inline-block; margin-bottom: 20px; color: #0066cc; }
+    </style>
+</head>
+<body>
+    <a href="index.html">← Volver</a>
+    <h1>Movimientos de Stock</h1>
+
+    <form id="form-movimiento" onsubmit="crearMovimiento(event)">
+        <input  id="mov-producto" placeholder="ID Producto" type="number" required /><br>
+        <input  id="mov-cantidad" placeholder="Cantidad"    type="number" required /><br>
+        <select id="mov-tipo">
+            <option value="ENTRADA">ENTRADA</option>
+            <option value="SALIDA">SALIDA</option>
+        </select><br>
+        <input  id="mov-notas"    placeholder="Notas" /><br>
+        <button type="submit">Registrar</button>
+    </form>
+
+    <table id="tabla-movimientos">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Tipo</th>
+                <th>Fecha</th>
+                <th>Notas</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="app.js"></script>
+    <script>cargarMovimientos();</script>
+</body>
+</html>

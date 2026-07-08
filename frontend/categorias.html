@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Categorías</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+        th { background: #f0f0f0; }
+        input { padding: 6px; margin-right: 8px; }
+        button { padding: 6px 12px; cursor: pointer; }
+        a { display: inline-block; margin-bottom: 20px; color: #0066cc; }
+    </style>
+</head>
+<body>
+    <a href="index.html">← Volver</a>
+    <h1>Categorías</h1>
+
+    <form id="form-categoria" onsubmit="crearCategoria(event)">
+        <input id="cat-nombre" placeholder="Nombre de categoría" required />
+        <button type="submit">Agregar</button>
+    </form>
+
+    <table id="tabla-categorias">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="app.js"></script>
+    <script>cargarCategorias();</script>
+</body>
+</html>
