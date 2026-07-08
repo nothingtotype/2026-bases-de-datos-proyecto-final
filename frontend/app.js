@@ -165,10 +165,10 @@ async function cargarProductos() {
             <td>${p.nombre}</td>
             <td>${p.descripcion ?? "-"}</td>
             <td>$${p.precio}</td>
-            <td>${p.categoria_id ?? "-"}</td>
-            <td>${p.proveedor_id ?? "-"}</td>
+            <td>${p.categoria_nombre ?? "-"}</td>
+            <td>${p.proveedor_nombre ?? "-"}</td>
             <td>
-                <button onclick="editarProducto(${p.id}, '${p.nombre}', ${p.precio})">Editar</button>
+                <button onclick="editarProducto(${p.id}, '${p.nombre}', ${p.precio}, ${p.categoria_id ?? 'null'}, ${p.proveedor_id ?? 'null'})">Editar</button>
                 <button onclick="eliminarProducto(${p.id})">Eliminar</button>
             </td>
         `;

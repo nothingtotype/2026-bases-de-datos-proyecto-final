@@ -100,7 +100,22 @@ def delete_proveedor(id: int, db: Session = Depends(get_db)):
 
 @app.get("/productos", response_model=list[ProductoOut])
 def get_productos(db: Session = Depends(get_db)):
-    return db.query(Producto).all()
+    productos = db.query(Producto).all()
+    resultado = []
+
+    for p in productos:
+        resultado.append(ProductoOut(
+            id              = p.id,
+            nombre          = p.nombre,
+            descripcion     = p.descripcion,
+            precio          = float(p.precio),
+            categoria_id    = p.categoria_id,
+            proveedor_id    = p.proveedor_id,
+            categoria_nombre = p.categoria.nombre if p.categoria else None,
+            proveedor_nombre = p.proveedor.nombre if p.proveedor else None
+        ))
+
+    return resultado
 
 @app.get("/productos/{id}", response_model=ProductoOut)
 def get_producto(id: int, db: Session = Depends(get_db)):

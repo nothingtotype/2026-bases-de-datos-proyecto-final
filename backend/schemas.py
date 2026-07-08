@@ -44,16 +44,17 @@ class ProductoCreate(BaseModel):
     proveedor_id: Optional[int] = None
 
 class ProductoOut(BaseModel):
-    id:           int
-    nombre:       str
-    descripcion:  Optional[str]
-    precio:       float
-    categoria_id: Optional[int]
-    proveedor_id: Optional[int]
+    id:              int
+    nombre:          str
+    descripcion:     Optional[str]
+    precio:          float
+    categoria_id:    Optional[int]
+    proveedor_id:    Optional[int]
+    categoria_nombre: Optional[str] = None   # ← new
+    proveedor_nombre: Optional[str] = None   # ← new
 
     class Config:
         from_attributes = True
-
 
 # --- Movimientos Stock ---
 
