@@ -1,0 +1,46 @@
+services:
+
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: inventario_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d inventario_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: fastapi_app
+    restart: always
+    environment:
+      DATABASE_URL: postgresql://admin:password123@db:5432/inventario_db
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+#   frontend:
+#     image: nginx:alpine
+#     container_name: nginx_frontend
+#     restart: always
+#     ports:
+#       - "80:80"
+#     volumes:
+#       - ./frontend:/usr/share/nginx/html:ro
+#     depends_on:
+#       - backend
+
+volumes:
+  postgres_data:
