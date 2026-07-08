@@ -15,7 +15,6 @@ El objetivo principal es demostrar el entendimiento de bases de datos PostgreSQL
 - [Requisitos](#requisitos)
 - [Cómo Ejecutar la Aplicación](#cómo-ejecutar-la-aplicación)
 - [Estructura del Proyecto](#estructura-del-proyecto)
-- [Esquema de la Base de Datos](#esquema-de-la-base-de-datos)
 - [Endpoints de la API](#endpoints-de-la-api)
 - [Cómo Probar la API](#cómo-probar-la-api)
 - [Capturas de Pantalla](#capturas-de-pantalla)
